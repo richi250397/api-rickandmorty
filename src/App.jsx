@@ -3,6 +3,7 @@ import './App.css'
 import axios from 'axios'
 import getRandomNumber from './utils/getRandomNumber'
 import LocationInfo from './assets/components/locationInfo'
+import ResidentCard from './assets/components/ResidentCards'
 
 
 
@@ -12,7 +13,7 @@ function App() {
   useEffect(() => {  
     const url = `https://rickandmortyapi.com/api/location/${getRandomNumber(126)}`
     axios.get(url)
-    .then(res => console.log(res.data))
+    .then(res => setLocation(res.data))
     .catch(err => console.log(err))
      }, []) 
 
@@ -27,8 +28,9 @@ function App() {
       <div>
          {
           location?.residents.map( url => (
-              <residentCard 
+              <ResidentCard 
               Key={url}
+              key={url}
               />
           ))
          }
