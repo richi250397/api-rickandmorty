@@ -1,36 +1,38 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
+import './styles/ResidentCard.css'
 
-const  ResidentCard = ({url }) => {
 
-    const[character, setCharacter] = useState ()
+const ResidentCard = ({ url }) => {
+    const [character, setCharacter] = useState()
 
-    useEffect (() => {
+    useEffect(() => {
         axios.get(url)
-        .then(res => setCharacter(res.data))
-        .catch(err => Console.log(err))
-    }, []  )
+            .then(res => setCharacter(res.data))
+            .catch(err => Console.err(err))
+    }, [])
 
     console.log(character)
 
-    return(
-        <article>
-            <header>''
-                <img src={character?.image} alt="" />
-                <div>
-                    <div className="circle"></div>
-                    <span> (character?.status) </span>
+    return (
+        
+        <article className="resident">
+            <header className="resident__header">
+                <img className="resident__image" src={character?.image} alt="" />
+                <div className="resident__status">
+                    <div className={`resident__status-circle ${character?.status}`}></div>
+                    <span className="resident__status-value">  {character?.status} </span>
                 </div>
             </header>
-        <section>
-            <h3>{character?.name} </h3>
-            <hr/>
-            <ul>
-                <li><span>Specie</span><span> {character?.species} </span></li>
-                <li><span>Origin</span><span> {character?.origin.name} </span></li>
-                <li><span>Eppisodies where appear</span><span>{character?.episode.lenght} </span></li>
-            </ul>
-        </section>
+            <section className="resident__body">
+                <h3 className="resident__name">{character?.name} </h3>
+                <hr className="residente__line" />
+                <ul className="resident__list">
+                    <li className="resident__item"><span className="resident__label">Specie</span><span className="resident__item-value"> {character?.species} </span></li>
+                    <li className="resident__item"><span className="resident__label">Origin</span><span className="resident__item-value"> {character?.origin.name} </span></li>
+                    <li className="resident__item"><span className="resident__label">Episodies where appear </span><span className="resident__item-value">{character?.episode.length} </span></li>
+                </ul>
+            </section>
         </article>
     )
 }
