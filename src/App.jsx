@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import axios from 'axios'
 import getRandomNumber from './utils/getRandomNumber'
-import LocationInfo from './assets/components/locationInfo'
+import LocationInfo from './assets/components/LocationInfo'
 import ResidentCard from './assets/components/ResidentCards'
 import FormLocation from './assets/components/FormLocation'
 import headerImage from './assets/imagen-ram.jpg'; 
